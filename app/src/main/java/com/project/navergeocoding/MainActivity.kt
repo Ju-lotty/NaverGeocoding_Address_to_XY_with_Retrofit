@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             .build()
         val gecodeAPI = retrofit.create(GeocodeAPI::class.java)
 
-        gecodeAPI.getAddress("TODO 주소 입력","TODO Client ID", "TODO Client Secret")
+        gecodeAPI.getAddress("TODO 주소 입력","TODO 클라이언트 ID","TODO 클라이언트 API KEY")
             .enqueue(object: Callback<GeocodeDTO> {
                 override fun onResponse(call: Call<GeocodeDTO>, response: Response<GeocodeDTO>) {
                     if(response.isSuccessful.not()) {
@@ -38,8 +38,9 @@ class MainActivity : AppCompatActivity() {
                         address_Result.text = result.toString()
                     }
                 }
+
                 override fun onFailure(call: Call<GeocodeDTO>, t: Throwable) {
-                    Log.d("Fail", "실패")
+                    Log.d("TAG", "실패")
                 }
 
             })
